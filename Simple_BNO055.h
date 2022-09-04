@@ -112,7 +112,9 @@ class Simple_BNO055 : public Simple_Wire {
     uint8_t TestConnection(bool Verbose = false);
     uint8_t Check_SelfTest(bool Verbose = 1,bool StopHere = 1);
     uint8_t Check_Calibration(bool Verbose = 1, uint8_t Test = 1);
-    Simple_BNO055 & CalibrationSaveRestore(uint8_t LoadVals, int16_t *StoredVals);
+    Simple_BNO055 & CalibrationView();
+    Simple_BNO055 & CalibrationSave(int16_t *StoredVals);
+    Simple_BNO055 & CalibrationRestore(int16_t *StoredVals);
     Simple_BNO055 & PG(uint8_t Page);
 };
 #endif

@@ -249,27 +249,19 @@ uint8_t Simple_BNO055::Check_Calibration(bool Verbose, uint8_t Test ){ // 0 = Ch
     return (Data);
 
 }
-Simple_BNO055 & Simple_BNO055::CalibrationSaveRestore(uint8_t LoadVals, int16_t *StoredVals){
+
+Simple_BNO055 & Simple_BNO055::CalibrationView(){
+    int16_t StoredVals[11];
     uint8_t CurrMode = CONFIGMODE;
-    int16_t CalVals[11];
+
     uint8_t CalStates = 0;
     R_OPR_MODE(&CurrMode);
     W_OPR_MODE_CONFIGMODE();
-    R_All_Calibration(CalVals);
+    R_All_Calibration(StoredVals);
     R_CALIB_STAT(&CalStates);
-    if(LoadVals == 2) {
-        W_All_Calibration(StoredVals);
-        return *this;
-    }
     Serial.print("#define Offsets "); 
-    uint8_t positions[3] {B001100, B000011, B110000}; // Acc, Gyro, Mag
     for(int i = 0; i < 3; i++) {
 
-        if((CalStates & positions[i]) == positions[i]){
-            StoredVals[(3*i)] = CalVals[(3*i)];
-            StoredVals[(3*i)+1] = CalVals[(3*i)+1];
-            StoredVals[(3*i)+2] = CalVals[(3*i)+2];
-        } 
         if(i>0)Serial.print(", ");
         Serial.print(StoredVals[(3*i)]);
         Serial.print(", ");
@@ -278,17 +270,47 @@ Simple_BNO055 & Simple_BNO055::CalibrationSaveRestore(uint8_t LoadVals, int16_t 
         Serial.print(StoredVals[(3*i)+2]);
     }
 
-    if((CalStates & B11000000) == B11000000){
-        StoredVals[9] = CalVals[9];
-        StoredVals[10] = CalVals[10];
-    }
     Serial.print(", ");
     Serial.print(StoredVals[9]);
     Serial.print(", ");
     Serial.print(StoredVals[10]);
     Serial.println();
-    if(LoadVals)W_All_Calibration(StoredVals);
-    Serial.println();
+    W_OPR_MODE(CurrMode);
+    return *this;
+}
+
+Simple_BNO055 & Simple_BNO055::CalibrationSave(int16_t *StoredVals){
+    uint8_t CurrMode = CONFIGMODE;
+    R_OPR_MODE(&CurrMode);
+    W_OPR_MODE_CONFIGMODE();
+    W_All_Calibration(StoredVals);
+    W_OPR_MODE(CurrMode);
+    return *this;
+}
+
+
+Simple_BNO055 & Simple_BNO055::CalibrationRestore(int16_t *StoredVals){
+    uint8_t CurrMode = CONFIGMODE;
+    int16_t CalVals[11];
+    uint8_t CalStates = 0;
+    R_OPR_MODE(&CurrMode);
+    W_OPR_MODE_CONFIGMODE();
+    R_All_Calibration(CalVals);
+    R_CALIB_STAT(&CalStates);
+
+    uint8_t positions[3] {B001100, B000011, B110000}; // Acc, Gyro, Mag
+    for(int i = 0; i < 3; i++) {
+
+        if((CalStates & positions[i]) == positions[i]){
+            StoredVals[(3*i)] = CalVals[(3*i)];
+            StoredVals[(3*i)+1] = CalVals[(3*i)+1];
+            StoredVals[(3*i)+2] = CalVals[(3*i)+2];
+        } 
+    }
+    if((CalStates & B11000000) == B11000000){
+        StoredVals[9] = CalVals[9];
+        StoredVals[10] = CalVals[10];
+    }
     W_OPR_MODE(CurrMode);
     return *this;
 }
