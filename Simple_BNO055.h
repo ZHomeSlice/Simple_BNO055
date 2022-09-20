@@ -105,7 +105,7 @@ class Simple_BNO055 : public Simple_Wire {
     //Startup Functions MPU
     Simple_BNO055(); // Constructor
     Simple_BNO055(uint8_t address);// Constructor
-    Simple_BNO055 & Begin();
+    Simple_BNO055 & begin(int sdaPin = 0, int sclPin = 1);
     Simple_BNO055 & Initialize();
     Simple_BNO055 & Set_Mode(uint8_t Operating_Mode);
     Simple_BNO055 & Get_Values(double *Value, uint8_t Type);

@@ -40,7 +40,7 @@ Simple_BNO055::Simple_BNO055(){
 Simple_BNO055::Simple_BNO055(uint8_t address) {
     SetAddress(address);
 }
-Simple_BNO055 & Simple_BNO055::Begin(){
+Simple_BNO055 & Simple_BNO055::begin(int sdaPin, int sclPin){
     delay(650); // hold on for boot
     if(!GetAddress()) SetAddress(Check_Address(BNO055_ADDRESS_A)?BNO055_ADDRESS_A:BNO055_ADDRESS_B);
     return *this;
