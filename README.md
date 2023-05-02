@@ -25,3 +25,4 @@ COMPASS: This mode is used for heading calculation, where only the horizontal co
 M4G: This mode is similar to the IMU mode, but the changing orientation of the magnetometer in the magnetic field is used.
 NDOF_FMC_OFF: This mode is the same as NDOF mode, but with the Fast Magnetometer Calibration turned 'OFF'.
 NDOF: This mode provides absolute orientation data that is calculated from the accelerometer, gyroscope, and magnetometer. This mode is also referred to as the 9-degrees of freedom mode.
+ 
