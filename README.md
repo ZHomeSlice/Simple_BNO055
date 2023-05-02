@@ -7,22 +7,25 @@ This library includes the necessary header files and sensor driver APIs for the 
 
 The BNO055 sensor has several modes that can be easily accessed through the Simple_BNO055 library for the Arduino platform. These modes can be selected by setting the appropriate value for the Set_Mode() function. Here's a brief overview of the different modes available:
 
---- Non-Fusion Modes:
+The BNO055 sensor has several modes that can be easily accessed through the Simple_BNO055 library for the Arduino platform. These modes can be selected by setting the appropriate value for the Set_Mode() function. Here's a brief overview of the different modes available:
 
-CONFIGMODE: This mode is used for configuration, where all output data is reset to zero and sensor fusion is halted.
-ACCONLY: This mode provides raw accelerometer data only.
-MAGONLY: This mode behaves like a stand-alone magnetometer, providing magnetometer data only.
-GYRONLY: This mode behaves like a stand-alone gyroscope, providing gyroscope data only.
-ACCMAG: This mode enables both accelerometer and magnetometer data.
-ACCGYRO: This mode enables both accelerometer and gyroscope data.
-MAGGYRO: This mode enables both magnetometer and gyroscope data.
-AMG: This mode enables all three sensors (accelerometer, magnetometer, and gyroscope) to be switched on.
-
---- Fusion Modes:
-
-IMU: This mode calculates relative orientation in space from the accelerometer and gyroscope data.
-COMPASS: This mode is used for heading calculation, where only the horizontal components x and y are used. The compass mode requires calibration.
-M4G: This mode is similar to the IMU mode, but the changing orientation of the magnetometer in the magnetic field is used.
-NDOF_FMC_OFF: This mode is the same as NDOF mode, but with the Fast Magnetometer Calibration turned 'OFF'.
-NDOF: This mode provides absolute orientation data that is calculated from the accelerometer, gyroscope, and magnetometer. This mode is also referred to as the 9-degrees of freedom mode.
- 
+<h2>BNO055 Sensor Modes</h2>
+<h3>Non-Fusion Modes:</h3>
+<ul>
+  <li>CONFIGMODE: This mode is used for configuration, where all output data is reset to zero and sensor fusion is halted.</li>
+  <li>ACCONLY: This mode provides raw accelerometer data only.</li>
+  <li>MAGONLY: This mode behaves like a stand-alone magnetometer, providing magnetometer data only.</li>
+  <li>GYRONLY: This mode behaves like a stand-alone gyroscope, providing gyroscope data only.</li>
+  <li>ACCMAG: This mode enables both accelerometer and magnetometer data.</li>
+  <li>ACCGYRO: This mode enables both accelerometer and gyroscope data.</li>
+  <li>MAGGYRO: This mode enables both magnetometer and gyroscope data.</li>
+  <li>AMG: This mode enables all three sensors (accelerometer, magnetometer, and gyroscope) to be switched on.</li>
+</ul>
+<h3>Fusion Modes:</h3>
+<ul>
+  <li>IMU: This mode calculates relative orientation in space from the accelerometer and gyroscope data.</li>
+  <li>COMPASS: This mode is used for heading calculation, where only the horizontal components x and y are used. The compass mode requires calibration.</li>
+  <li>M4G: This mode is similar to the IMU mode, but the changing orientation of the magnetometer in the magnetic field is used.</li>
+  <li>NDOF_FMC_OFF: This mode is the same as NDOF mode, but with the Fast Magnetometer Calibration turned 'OFF'.</li>
+  <li>NDOF: This mode provides absolute orientation data that is calculated from the accelerometer, gyroscope, and magnetometer. This mode is also referred to as the 9-degrees of freedom mode.</li>
+</ul>
