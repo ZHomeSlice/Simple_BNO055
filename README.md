@@ -1,0 +1,6 @@
+# Simple_BNO055
+Introducing Simple_BNO055, the easy-to-use Arduino Library for the Bosch Sensortec MEMS BNO055 sensor! If you've ever worked with a 9-DOF sensor, you know how challenging it can be to turn the sensor data from an accelerometer, gyroscope, and magnetometer into actual "3D space orientation." But now, with Simple_BNO055, you can have meaningful sensor data in minutes, thanks to the powerful sensor fusion algorithms and real-time capabilities of the BNO055.
+
+Simple_BNO055 provides a simple abstraction layer between your Arduino project and the BNO055 sensor, allowing you to drop in any comparable sensor with only a few lines of code to modify. You can also easily perform quick sanity checks when working with new sensors, or swap in any compatible sensor if you require greater sensitivity or a cheaper unit becomes available.
+
+This library includes the necessary header files and sensor driver APIs for the BNO055 sensor, making it easy to integrate into your project. You can also take advantage of the BNO055's ability to output a wide range of sensor data, including absolute orientation in Euler vectors or quaternions, angular velocity vector, acceleration vector, magnetic field strength vector, linear acceleration vector, gravity vector, and ambient temperature.
