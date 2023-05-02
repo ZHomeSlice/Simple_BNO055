@@ -23,3 +23,9 @@
   <li>NDOF_FMC_OFF: This mode is the same as NDOF mode, but with the Fast Magnetometer Calibration turned 'OFF'.</li>
   <li>NDOF: This mode provides absolute orientation data that is calculated from the accelerometer, gyroscope, and magnetometer. This mode is also referred to as the 9-degrees of freedom mode.</li>
 </ul>
+
+Required Library<br>
+Library Name: Simple_Wire<br>
+Version: 1.0.0<br>
+<a href="https://github.com/ZHomeSlice/Simple_Wire">Simple_Wire library on GitHub</a>
+Description: Easy-to-use Arduino Library for I2C communication that simplifies reading and writing data to I2C devices. The library uses the standard Wire library and provides a simpler syntax for sending and receiving data, as well as optional error checking. The library is designed for novice programmers and those new to I2C communication.
