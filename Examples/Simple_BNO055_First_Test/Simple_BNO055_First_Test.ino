@@ -75,7 +75,7 @@ void setup() {
   Serial.begin(115200);
   while (!Serial); // wait for Leonardo enumeration, others continue immediately
   Serial.println(F("Start:"));
-  if (!BNO.Begin().TestConnection()) {
+  if (!BNO.begin().TestConnection()) {
     Serial.println(F("Failed to connect.\nEND..."));
     while (1) {};
   }
