@@ -202,10 +202,10 @@ uint8_t Simple_BNO055::Check_SelfTest(bool Verbose,bool StopHere){
     }
     if(SelfTest != B1111) { 
         Serial.println("Chip issues: ");
-        if(!(SelfTest & B1000))Serial.println("Microcontroller self test Failed");
-        if(!(SelfTest & B0100))Serial.println("Gyroscope self test Failed");
-        if(!(SelfTest & B0010))Serial.println("Magnetometer self test Failed");
-        if(!(SelfTest & B0001))Serial.println("Accelerometer self test Failed");
+        if(!(SelfTest & 0b1000))Serial.println("Microcontroller self test Failed");
+        if(!(SelfTest & 0b0100))Serial.println("Gyroscope self test Failed");
+        if(!(SelfTest & 0b0010))Serial.println("Magnetometer self test Failed");
+        if(!(SelfTest & 0b0001))Serial.println("Accelerometer self test Failed");
         if(StopHere)while(1){};
         return 0;
     }
@@ -220,27 +220,27 @@ uint8_t Simple_BNO055::Check_Calibration(bool Verbose, uint8_t Test ){ // 0 = Ch
     {
     case 1:
         Serial.print("SYS Calibration Status: ");
-        Serial.println((Data & B11000000) >> 6);
+        Serial.println((Data & 0b11000000) >> 6);
         break;
     case 2:
         Serial.print("Gyro Calibration Status: ");
-        Serial.println((Data & B00110000) >> 4);
+        Serial.println((Data & 0b00110000) >> 4);
         break;
     case 3:
         Serial.print("Accelerometer Calibration Status: ");
-        Serial.println((Data & B00001100) >> 2);
+        Serial.println((Data & 0b00001100) >> 2);
         break;
     case 4:
         Serial.print("Magnetometer Calibration Status: ");
-        Serial.println((Data & B00000011) );
+        Serial.println((Data & 0b00000011) );
         break;
     default:
         uint16_t DataMix = 0;
         Serial.print("Calibration Status SYS,GYR,ACC,MAG:");
-        DataMix =  ( (uint8_t)(Data & B00000011)      );
-        DataMix += (((uint8_t)(Data & B00001100) >> 2)) * 10;      
-        DataMix += (((uint8_t)(Data & B00110000) >> 4)) * 100;      
-        DataMix += (((uint8_t)(Data & B11000000) >> 6)) * 1000;
+        DataMix =  ( (uint8_t)(Data & 0b00000011)      );
+        DataMix += (((uint8_t)(Data & 0b00001100) >> 2)) * 10;      
+        DataMix += (((uint8_t)(Data & 0b00110000) >> 4)) * 100;      
+        DataMix += (((uint8_t)(Data & 0b11000000) >> 6)) * 1000;
 
         Serial.println(DataMix);
         break;
@@ -307,7 +307,7 @@ Simple_BNO055 & Simple_BNO055::CalibrationRestore(int16_t *StoredVals){
             StoredVals[(3*i)+2] = CalVals[(3*i)+2];
         } 
     }
-    if((CalStates & B11000000) == B11000000){
+    if((CalStates & 0b11000000) == B11000000){
         StoredVals[9] = CalVals[9];
         StoredVals[10] = CalVals[10];
     }
